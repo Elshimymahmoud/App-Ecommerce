@@ -21,14 +21,19 @@ import Listings from "./Listings";
 import listingData from "@/data/destinations.json";
 import GroupListings from "@/component/GroupListings";
 import groupData from "@/data/groups.json";
+import Search from "@/component/Search";
+
 export default function Home() {
   const headerHight = useHeaderHeight();
   const [category, setCategory] = useState("All");
+
+  const [searchInput, setSearchInput] = useState("");
 
   const onCatChanged = (category: string) => {
     console.log("Categpry: ", category);
     setCategory(category);
   };
+  console.log(searchInput);
   return (
     <>
       {" "}
@@ -83,8 +88,20 @@ export default function Home() {
               size={26}
               color={color.black}
             />
-            <TextInput placeholder="Search For an Item"></TextInput>
+            <TextInput
+              value={searchInput}
+              onChangeText={(text) => setSearchInput(text)}
+              style={{
+                borderRadius: 50,
+              }}
+              placeholder="Search For an Item"
+            ></TextInput>
           </View>
+          <Search
+            data={listingData}
+            input={searchInput}
+            setInput={setSearchInput}
+          />
         </View>
 
         <CatogreyBtn onCagtegoryChanged={onCatChanged} />
@@ -103,13 +120,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: 20,
-    backgroundColor: color.bgColor,
+    backgroundColor: "offwhite",
   },
   headingText: {
     alignSelf: "center",
     fontSize: 28,
     fontWeight: "800",
-    color: color.black,
+    color: "black",
     marginTop: 10,
   },
   searchSectionWrapper: {
@@ -118,7 +135,7 @@ const styles = StyleSheet.create({
   },
   searchBar: {
     flexDirection: "row",
-    backgroundColor: color.white,
+    backgroundColor: "white",
     padding: 15,
     borderRadius: 50,
   },
