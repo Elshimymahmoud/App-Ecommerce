@@ -31,12 +31,14 @@ const IMG_HEIGHT = 300;
 
 const ListingDetails = () => {
   const { id } = useLocalSearchParams();
-  const listing: ListingType = (listingData as ListingType[]).find(
-    (item) => item.id === id
-  );
+
+  const listing = (listingData as ListingType[]).find((item) => item.id === id);
+
+  if (!listing) {
+    throw new Error("Listing not found");
+  }
 
   const router = useRouter();
-
   const scrollRef = useAnimatedRef<Animated.ScrollView>();
   const scrollOffset = useScrollViewOffset(scrollRef);
   const imageAnimatedStyle = useAnimatedStyle(() => {
@@ -159,9 +161,7 @@ const ListingDetails = () => {
                 </View>
                 <View>
                   <Text style={styles.highlightTxt}>Rating</Text>
-                  <Text style={styles.highlightTxtVal}>
-                    {listing.rating} 
-                  </Text>
+                  <Text style={styles.highlightTxtVal}>{listing.rating}</Text>
                 </View>
               </View>
             </View>
@@ -249,12 +249,12 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     position: "absolute",
     bottom: 0,
-    alignItems:"center",
-    justifyContent:"center",
+    alignItems: "center",
+    justifyContent: "center",
     padding: 20,
     paddingBottom: 30,
-    
-    margin:"auto",
+
+    margin: "auto",
     width: 400,
   },
   footerBtn: {
@@ -263,7 +263,6 @@ const styles = StyleSheet.create({
     padding: 20,
     borderRadius: 10,
     alignItems: "center",
-    
   },
   footerBookBtn: {
     flex: 2,
@@ -275,6 +274,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: "600",
     textTransform: "uppercase",
-    width:100
+    width: 100,
   },
 });
