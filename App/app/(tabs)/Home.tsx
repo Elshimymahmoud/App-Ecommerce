@@ -73,17 +73,17 @@ export default function Home() {
         }}
       />
       <View style={[styles.container, { paddingTop: headerHight }]}>
-        <Text style={styles.headingText}>Explore The Beatifaul App!</Text>
+        <Text style={styles.headingText}>E-Commerce App</Text>
 
         <View style={styles.searchSectionWrapper}>
           <View style={styles.searchBar}>
             <AntDesign
               name="search1"
-              style={{ marginRight: 18, paddingLeft: 15, width: 150 }}
-              size={24}
+              style={{ width: 30 }}
+              size={26}
               color={color.black}
             />
-            <TextInput placeholder="Search...."></TextInput>
+            <TextInput placeholder="Search For an Item"></TextInput>
           </View>
         </View>
 
@@ -106,6 +106,7 @@ const styles = StyleSheet.create({
     backgroundColor: color.bgColor,
   },
   headingText: {
+    alignSelf: "center",
     fontSize: 28,
     fontWeight: "800",
     color: color.black,
@@ -118,7 +119,7 @@ const styles = StyleSheet.create({
   searchBar: {
     flexDirection: "row",
     backgroundColor: color.white,
-    padding: 16,
-    borderRadius: 10,
+    padding: 15,
+    borderRadius: 50,
   },
 });
