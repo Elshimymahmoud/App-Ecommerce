@@ -1,6 +1,6 @@
-import { View, Text,StyleSheet, TouchableOpacity ,Image,Pressable, TextInput} from 'react-native'
+import { View, Text,StyleSheet, TouchableOpacity ,Image,Pressable, TextInput, ScrollView} from 'react-native'
 import React from 'react'
-import { Stack } from 'expo-router'
+import { Link, Stack } from 'expo-router'
 import { Feather } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
 import color from '@/constans/color';
@@ -11,7 +11,8 @@ import { AntDesign } from '@expo/vector-icons';
 import CatogreyBtn from '@/component/CatogreyBtn';
 import Listings from './Listings';
 import listingData from "@/data/destinations.json";
-
+import GroupListings from '@/component/GroupListings';
+import groupData from "@/data/groups.json"
 export default function Home() {
   const headerHight=useHeaderHeight();
    const [category, setCategory] = useState("All");
@@ -31,10 +32,11 @@ export default function Home() {
         </TouchableOpacity>
       ),
 headerRight:()=>(
-         <TouchableOpacity onPress={()=>{{}}} style={{marginRight:1400,backgroundColor:color.white,shadowColor:'#171717',width:35,height:35,paddingTop:5,borderRadius:5,shadowOffset:{width:2,height:4},shadowOpacity:0.2,shadowRadius:3}}>
+        
+        <Link href={`/login`} asChild><TouchableOpacity onPress={()=>{{}}} style={{marginRight:1400,backgroundColor:color.white,shadowColor:'#171717',width:35,height:35,paddingTop:5,borderRadius:5,shadowOffset:{width:2,height:4},shadowOpacity:0.2,shadowRadius:3}}>
               
              <Entypo name="login" size={26} color="black"  />
-            </TouchableOpacity>
+            </TouchableOpacity></Link>
 ),
 
 
@@ -50,9 +52,16 @@ headerRight:()=>(
 
     </View>
 <CatogreyBtn onCagtegoryChanged={onCatChanged}/>  
+
+<ScrollView>
+<Listings listings={listingData} category={category} />
 <Listings listings={listingData} category={category} />
 
+
+<GroupListings listings={groupData}/>
+</ScrollView>
   </View>
+  
     </>
   )
 }

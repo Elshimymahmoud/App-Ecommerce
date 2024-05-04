@@ -13,6 +13,7 @@ import { ListingType } from "@/types/listingType";
 import Colors from "@/constans/color";
 import { FontAwesome5, Ionicons } from "@expo/vector-icons";
 import { Link } from "expo-router";
+import { GroupType } from "@/types/groupType";
 
 type Props = {
   listings: any[];
@@ -31,14 +32,16 @@ const Listings = ({ listings, category }: Props) => {
     }, 200);
   }, [category]);
 
-  const renderItems: ListRenderItem<ListingType> = ({ item }) => {
+  const renderItems: ListRenderItem<ListingType> = ({ item}) => {
     return (
       <Link href={`/listing/${item.id}`} asChild>
         <TouchableOpacity>
           <View style={styles.item}>
             <Image source={{ uri: item.image }} style={styles.image} />
-           
-           <View style={styles.ratingRow}>
+           {/*   rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrating */}
+
+
+           {/* <View style={styles.ratingRow}>
             <View style={styles.rating}>
                 {[1,2,3,4,5].map((index)=>(
                     <Ionicons
@@ -52,7 +55,7 @@ const Listings = ({ listings, category }: Props) => {
                 <Text style={styles.ratingText}>(4.9)</Text>
              
             </View>
-</View>
+</View> */}
 
 
 
