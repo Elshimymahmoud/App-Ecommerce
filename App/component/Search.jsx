@@ -2,22 +2,26 @@ import { StyleSheet, Text, View, FlatList } from "react-native";
 import React from "react";
 
 const Search = ({ data, input, setInput }) => {
+  const handleOnSubmit = () => {
+    const data = data.filter((item) => item.name === input);
+  };
+
   return (
     <View>
       <FlatList
         data={data}
         renderItem={({ item }) => {
-          if (input == item.name) {
+          if (input === item.name) {
             return (
               <View>
                 <Text>{item.name}</Text>
               </View>
             );
           } else {
-            return null; // Return null when you don't want to render anything
+            return null;
           }
         }}
-        keyExtractor={(item) => item.id.toString()} // Don't forget to provide a key extractor
+        keyExtractor={(item) => item.id.toString()}
       />
     </View>
   );

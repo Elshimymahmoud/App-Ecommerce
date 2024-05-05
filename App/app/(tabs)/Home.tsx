@@ -33,7 +33,9 @@ export default function Home() {
     console.log("Categpry: ", category);
     setCategory(category);
   };
+
   console.log(searchInput);
+
   return (
     <>
       {" "}
@@ -80,29 +82,34 @@ export default function Home() {
       <View style={[styles.container, { paddingTop: headerHight }]}>
         <Text style={styles.headingText}>E-Commerce App</Text>
 
-        <View style={styles.searchSectionWrapper}>
-          <View style={styles.searchBar}>
+        <View style={styles.searchBar}>
+          <TextInput
+            value={searchInput}
+            onChangeText={(text) => setSearchInput(text)}
+            style={{
+              marginLeft: 10,
+              width: 190,
+              height: 30,
+            }}
+            placeholder={"Search For an Item"}
+            multiline
+          ></TextInput>
+
+          <TouchableOpacity>
             <AntDesign
               name="search1"
-              style={{ width: 30 }}
+              style={{ width: 30, marginLeft: 5 }}
               size={26}
               color={color.black}
             />
-            <TextInput
-              value={searchInput}
-              onChangeText={(text) => setSearchInput(text)}
-              style={{
-                borderRadius: 50,
-              }}
-              placeholder="Search For an Item"
-            ></TextInput>
-          </View>
-          <Search
-            data={listingData}
-            input={searchInput}
-            setInput={setSearchInput}
-          />
+          </TouchableOpacity>
         </View>
+
+        <Search
+          data={listingData}
+          input={searchInput}
+          setInput={setSearchInput}
+        />
 
         <CatogreyBtn onCagtegoryChanged={onCatChanged} />
 
@@ -129,14 +136,12 @@ const styles = StyleSheet.create({
     color: "black",
     marginTop: 10,
   },
-  searchSectionWrapper: {
-    flexDirection: "row",
-    marginVertical: 20,
-  },
   searchBar: {
     flexDirection: "row",
     backgroundColor: "white",
-    padding: 15,
+    padding: 5,
     borderRadius: 50,
+    width: 235,
+    marginVertical: 20,
   },
 });
